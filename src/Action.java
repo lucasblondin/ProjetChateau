@@ -17,7 +17,7 @@ public class Action {
        while (!moi.mort()){
         System.out.println("\033[H\033[2J");
         System.out.flush();
-        
+     //   System.out.println(hante.getOrdreDesPièces());
         
         
         System.out.println("position : " + moi.getIciString());

@@ -3,9 +3,10 @@ import java.util.Random;
 
 public class Chateau {
     ArrayList<Pièce> piece = new ArrayList<Pièce>();
+    Random rand = new Random();
+    int endroit = rand.nextInt(4) + 8;
+    
     public Chateau(){
-        Random rand = new Random();
-        
         //rez de chaussé ( niveau 0 )
         Pièce pont = new Pièce("pont",0);
         Pièce entree = new Pièce("entree",0);
@@ -65,23 +66,22 @@ public class Chateau {
         arme.porte.add(new Porte("escalier vers le cachot","cellule"));
         
         //7
-        piece.add(cellule);
-        cellule.porte.add(new Porte("escalier vers salle d'arme","arme"));
-        cellule.porte.add(new Porte("passage dans les égouts","égout"));
-        
-        //8
-        piece.add(trone);
-        trone.porte.add(new Porte("escalier vers la salle d'entrée","entree"));
-        trone.porte.add(new Porte("escalier vers la cuisine","cuisine"));
-        trone.porte.add(new Porte("porte vers les remparts","rempart"));
-        
-        
-        //9
         piece.add(rempart);
         rempart.porte.add(new Porte("chemin vers tour sud","tourSud"));
         rempart.porte.add(new Porte("chemin vers tour nord","tourNord"));
         rempart.porte.add(new Porte("escalier vers la salle d'arme","arme"));
         
+        //8
+        piece.add(cellule);
+        cellule.porte.add(new Porte("escalier vers salle d'arme","arme"));
+        cellule.porte.add(new Porte("passage dans les égouts","égout"));
+        
+        //9
+        piece.add(trone);
+        trone.porte.add(new Porte("escalier vers la salle d'entrée","entree"));
+        trone.porte.add(new Porte("escalier vers la cuisine","cuisine"));
+        trone.porte.add(new Porte("porte vers les remparts","rempart"));
+          
         //10
         piece.add(tourNord);
         tourNord.porte.add(new Porte("porte vers les remparts","rempart"));
@@ -92,7 +92,17 @@ public class Chateau {
         tourSud.porte.add(new Porte("porte vers les remparts","rempart"));
         tourSud.porte.add(new Porte("sauter par la fenêtre","égout"));
         
-        piece.get(rand.nextInt(piece.size()-1)+1).addPrincesse();
+       
+        piece.get(endroit).addPrincesse();
+        
+       System.out.println("la princesse ce trouve : " + piece.get(endroit).getNom());
+    }
+    
+    String getOrdreDesPièces(){
+        String res ="";
+        for (Pièce p : piece) {
+            res += piece.lastIndexOf(p) + " " +p.getNom();
+		} return res;
     }
     
     String getMap(Playeur p){
@@ -118,10 +128,10 @@ public class Chateau {
         } return res ;
     }
     
-    String indice(){
-        String res = "";
-        // CSV FILE 
+    String getIndice(){
+         
         
-        return res ;
+        
+        return "";
     }
 }
