@@ -23,6 +23,12 @@ public class Protection extends Item {
        this.force = 25 * this.getEtoile(); 
     }
 
+    public Protection(int i){
+      this.etoile = this.getEtoileIndex(i);
+      this.nom = protection[this.getEtoile()];
+      this.force = 25 * this.getEtoile();  
+    }
+    
     @Override
     int getUse() {
         return 1;
@@ -53,6 +59,26 @@ public class Protection extends Item {
                     moi.vie += epee.force;
                 }else if (repd == 2){
                     System.out.println(epee.descrip[epee.getEtoile()]);
+                }
+          }while (repd == 2);
+        }   
+   }
+    
+    void foundItemIndex(Playeur moi) {
+    if (rand.nextInt(20) > 10){
+          Protection epee = new Protection(this.getEtoile());
+            System.out.println("Un objet vient de tomber");
+            System.out.println("Objet trouvé : " + epee.getNom() +
+                    "\n tu la prend ?");
+            System.out.println("\t 1. bien sûr\n\t 2. description\n\t 3. pas besoin");
+            int repd;
+            do{
+                System.out.print("réponse : " );
+                repd = input.nextInt();
+                if( repd == 1){
+                    moi.addItem(this);
+                }else if (repd == 2){
+                    System.out.println(this.descrip[epee.getEtoile()]);
                 }
           }while (repd == 2);
         }    
