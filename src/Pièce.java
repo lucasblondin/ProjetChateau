@@ -8,8 +8,9 @@ public class Pièce {
    
    Scanner in = new Scanner(System.in);
    Random rand = new Random();
-   Item item;
-   Ennemie res;
+   private boolean princesse = false;
+   private Item item;
+   private Ennemie res;
    
    
     public Pièce(String nom,int etage){
@@ -29,6 +30,13 @@ public class Pièce {
         return this.etage;
     }
     
+    boolean getPrincesse(){
+        return princesse;
+    }
+    void addPrincesse(){
+        princesse = true;
+    }
+    
     int getNbPièce(){
         return porte.size() ;
     }
@@ -44,6 +52,19 @@ public class Pièce {
         }
         return item ;
     }
+    
+    
+    Item creatItem(int i){
+    int alea = rand.nextInt(3);
+        if(alea == 0){
+            item = new Epee(i);
+        }else if(alea == 1){
+            item = new Potion(i);
+        }else{
+            item = new Protection(i);
+        }
+        return item ;
+    }
       
      
   void foundEnnemie(Playeur p) {
@@ -52,28 +73,32 @@ public class Pièce {
             System.out.println("un ennemie vient d'apparaitre !\n Ennemie : " + enemy.getNom()); 
             boolean fuite = false;
             int rep ;
-            if(!enemy.getRep()){
                 do{
                     System.out.println( enemy.getNom() + " à " + enemy.vie + " points de vie");
                     System.out.println("il vous reste " + p.getVie() + " points de vie");
                     System.out.println("\t 1. attaque\n\t 2. inventaire\n\t 3. fuir");
-                    System.out.print("réponse :");
+                    System.out.print("réponse : ");
                     rep = in.nextInt();
                 
-                     if(rep == 1){
+                     if(rep==1){
+                         if(enemy.getRep()){
                         enemy.getDamage(p.getAttaque());
+                         }else{
                         p.getDamage(enemy.getAttaque());
-                    }else if(rep == 2){
+                         }
+                    }else if(rep==2){
                         p.useItem(); 
-                    }else if(rep == 3){
+                    }else if(rep==3){
                         fuite=true;
                         p.getDamage(enemy.getAttaque()/2);
                     }
-              
-                }while(!enemy.mort() &&   !p.mort() && !fuite );
-            }else{
-                System.out.println(" Bravo ");
-            }
+                }while(!enemy.mort() && !p.mort() && !fuite);
+                
+                if(enemy.mort()){
+                this.creatItem(enemy.getDifficulté()).foundItem(p);     
+                }
+
+            
         }    
    }
 }

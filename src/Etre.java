@@ -11,7 +11,7 @@ public class Etre {
     
     boolean mort(){
         boolean res = false;
-        if (vie < 0){
+        if (vie <= 0){
             res = true;
         } return res ;
     }
@@ -21,7 +21,11 @@ public class Etre {
     }
     
     void getDamage(int i){
+        if((vie-i) < 0){
+        vie = 0;
+        }else{
         vie -= i;
+        }
     }
     
     String getNom(){

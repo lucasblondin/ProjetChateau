@@ -14,7 +14,7 @@ public class Action {
        Scanner input = new Scanner(System.in);
        
        //System.out.println(hanter.getPiece());
-       while (true){
+       while (!moi.mort()){
         System.out.println("\033[H\033[2J");
         System.out.flush();
         
@@ -33,7 +33,12 @@ public class Action {
         
         if(choix == 1){
        // moi.foundItem(); 
+            if(moi.getIciPièce().getPrincesse()){
+                System.out.println("tu as trouvé la princesse ! ");
+                // duel contre boss & recup de la princesse
+            }else{
             moi.getIciPièce().creatItem().foundItem(moi);
+            }
         }else if(choix == 2){
             moi.changeDePiece(hante);  
             moi.getIciPièce().foundEnnemie(moi);

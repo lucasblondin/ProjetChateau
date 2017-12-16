@@ -1,5 +1,5 @@
 public class Ennemie extends Etre {
-
+    int niveau;
     public Ennemie(String p){
         if(p.equals("entree")){
           this.nom = "armure vide";
@@ -44,51 +44,63 @@ public class Ennemie extends Etre {
         }
     }
     
+    
     boolean getRep(){
         boolean res = false; 
         int r = this.rand.nextInt(3);
         int input;
         int resultat;
         
+        
         if(r == 0){
-            int x = this.rand.nextInt(15);
-            int y = this.rand.nextInt(10);
-            int z = this.rand.nextInt(10);
-            
-            resultat = (x*y)/(z+3);
-            System.out.println("\t calcule : " + x + " X " + y + " / " + z + " + " + "3");
-            
+            int x = this.rand.nextInt(15)+1;
+            int y = this.rand.nextInt(10)+1;
+            int z = this.rand.nextInt(10)+1;
+            niveau = 50;
+            resultat = ((x*y)/z)+x;
+            System.out.println("\t calcule : (" + x + " X " + y + ") / " + z + " + " + x);
+            System.out.print("réponse : ");
             input = this.input.nextInt();
             if(input == resultat){
                res = true;
-               System.out.println(" bonne réponse");
+               System.out.println("bonne réponse");
+            }else {
+              System.out.println("la réponse était " + resultat);  
             }
         }else if(r == 1){
             int x = this.rand.nextInt(15);
             int y = this.rand.nextInt(10);
             int z = this.rand.nextInt(10);
-            
+            niveau = 30;
             resultat = (x*z)+z-x;
             System.out.println("\t calcule : " + x + " X " + z + " + " + z + " - " + x);
-            
-             input = this.input.nextInt();
+            System.out.print("réponse : ");
+            input = this.input.nextInt();
             if(input == resultat){
                res = true;
-               System.out.println(" bonne réponse");
+               System.out.println("bonne réponse");
+            }else {
+              System.out.println("la réponse était " + resultat);  
             }
         }else{
             int x = this.rand.nextInt(15);
             int y = this.rand.nextInt(10);
             int z = this.rand.nextInt(5);
-            
-            resultat = x + y - z + y -x;
+            niveau = 10;
+            resultat = x+y-z+y-x;
             System.out.println("\t calcule : " + x + " + " + y + " - " + z + " + " + y + " - " + x);
-            
-             input = this.input.nextInt();
+            System.out.print("réponse : ");
+            input = this.input.nextInt();
             if(input == resultat){
                res = true;
-               System.out.println(" bonne réponse");
+               System.out.println("bonne réponse");
+            }else {
+              System.out.println("la réponse était " + resultat);  
             }
         } return res ;
+    }
+    
+    int getDifficulté(){
+        return niveau;
     }
 }

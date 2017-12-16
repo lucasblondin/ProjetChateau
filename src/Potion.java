@@ -23,6 +23,12 @@ public class Potion extends Item {
        this.force = 25 * this.getEtoile(); 
     }
     
+    public Potion(int i){
+      this.etoile = this.getEtoileIndex(i);
+      this.nom = potion[this.getEtoile()];
+      this.force = 25 * this.getEtoile();  
+    }
+    
     @Override
     int getUse() {
         return this.force;
@@ -40,7 +46,26 @@ public class Potion extends Item {
     @Override
     void foundItem(Playeur moi) {
     if (rand.nextInt(20) > 10){
-            Potion epee = new Potion();
+          //  Potion epee = new Potion();
+            System.out.println(" Objet trouvé : " + this.getNom() +
+                    "\n tu la prend ?");
+            System.out.println("\t 1. bien sûr\n\t 2. description\n\t 3. pas besoin");
+            int repd;
+            do{
+                System.out.print("réponse : " );
+                repd = input.nextInt();
+                if( repd == 1){
+                    moi.addItem(this);
+                }else if (repd == 2){
+                    System.out.println(this.descrip[this.getEtoile()]);
+                }
+          }while (repd == 2);
+        }    
+   }
+    
+   void foundItemIndex(Playeur moi) {
+    if (rand.nextInt(20) > 10){
+          Potion epee = new Potion(this.getEtoile());
             System.out.println(" Objet trouvé : " + epee.getNom() +
                     "\n tu la prend ?");
             System.out.println("\t 1. bien sûr\n\t 2. description\n\t 3. pas besoin");
@@ -49,9 +74,9 @@ public class Potion extends Item {
                 System.out.print("réponse : " );
                 repd = input.nextInt();
                 if( repd == 1){
-                    moi.addItem(epee);
+                    moi.addItem(this);
                 }else if (repd == 2){
-                    System.out.println(epee.descrip[epee.getEtoile()]);
+                    System.out.println(this.descrip[epee.getEtoile()]);
                 }
           }while (repd == 2);
         }    

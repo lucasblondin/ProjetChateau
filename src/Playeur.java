@@ -37,6 +37,16 @@ public class Playeur extends Etre{
         }return res;
     } 
     
+    String getItemChoisie(String r){
+        String res = "";
+        for(int i = 0 ; i < this.objet.size();i++){
+            if(this.objet.get(i).type().equals(r)){
+                res = this.objet.get(i).getNom() + " force : " + this.objet.get(i).force;
+            }
+        }
+        return res ;
+    }
+    
     void dejaVu (Item itm){
         boolean res = false;
         int idx = 0;
@@ -48,8 +58,8 @@ public class Playeur extends Etre{
             }
         if(res){
             System.out.println(
-                  "vous allez devoir jeter "
-                + "votre arme précédente\n pas de souci ?" );
+                  "vous allez devoir jeter votre arme précédente ?" );
+            System.out.println("(trouvé) " + itm.getNom() + " force : "+ itm.force +  " -----> " + this.getItemChoisie(itm.type()));
             System.out.println("\t 1. garder\n\t 2. changer");
             System.out.print("réponse : ");
             int change = input.nextInt();
@@ -107,6 +117,7 @@ public class Playeur extends Etre{
         for(int i = 0 ; i < this.ici.getNbPièce() ; i++){
             System.out.println( "\t" + i + " " + this.ici.porte.get(i).getNom());
          }
+        System.out.print("réponse : ");
         int endroit = input.nextInt();
         //System.out.println(moi.ici.porte.get(endroit).getdirection());
         for(Pièce p : c.piece){

@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Chateau {
     ArrayList<Pièce> piece = new ArrayList<Pièce>();
     public Chateau(){
+        Random rand = new Random();
         
         //rez de chaussé ( niveau 0 )
         Pièce pont = new Pièce("pont",0);
@@ -89,6 +91,8 @@ public class Chateau {
         piece.add(tourSud);
         tourSud.porte.add(new Porte("porte vers les remparts","rempart"));
         tourSud.porte.add(new Porte("sauter par la fenêtre","égout"));
+        
+        piece.get(rand.nextInt(piece.size()-1)+1).addPrincesse();
     }
     
     String getMap(Playeur p){
@@ -112,5 +116,12 @@ public class Chateau {
         for (Pièce p : piece) {
             res +=" " + p.getNom() + " niveau " + p.getNiveau() + " avec " + p.getNbPièce() + " passages\n";
         } return res ;
+    }
+    
+    String indice(){
+        String res = "";
+        // CSV FILE 
+        
+        return res ;
     }
 }

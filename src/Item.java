@@ -15,6 +15,8 @@ public abstract class Item {
    
    abstract void foundItem(Playeur m);
    
+   abstract void foundItemIndex(Playeur m);
+   
    abstract String type();
     
    public String getNom(){
@@ -24,5 +26,13 @@ public abstract class Item {
    public int getEtoile(){
        return etoile;
    }
+   
+   public int getEtoileIndex(int i){
+       if(i<5){
+            return rand.nextInt(5-i)+i;
+       }
+       return 0;
+   }
+   
    
 }
