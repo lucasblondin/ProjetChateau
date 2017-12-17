@@ -3,10 +3,27 @@ import java.util.Random;
 
 public class Chateau {
     ArrayList<Pièce> piece = new ArrayList<Pièce>();
+    ArrayList<Indices> indice = new ArrayList<Indices>();
+    
     Random rand = new Random();
     int endroit = rand.nextInt(4) + 8;
     
+
+    
+    
+    
     public Chateau(){
+        
+        Indices celluleId = new Indices("indiceCellule1","indiceCellule2","indiceCellule3");
+        Indices troneId = new Indices("indiceTrone1","indiceTrone2","indiceTrone3");
+        Indices tourNId = new Indices("indiceTourN1","indiceTourN2","indiceTourN3");
+        Indices tourSId = new Indices("indice1TourS","indiceTourS2","indiceTourS3");
+    
+        indice.add(celluleId);
+        indice.add(troneId);
+        indice.add(tourNId);
+        indice.add(tourSId);
+        
         //rez de chaussé ( niveau 0 )
         Pièce pont = new Pièce("pont",0);
         Pièce entree = new Pièce("entree",0);
@@ -97,6 +114,7 @@ public class Chateau {
         
        System.out.println("la princesse ce trouve : " + piece.get(endroit).getNom());
     }
+    
     
     String getOrdreDesPièces(){
         String res ="";

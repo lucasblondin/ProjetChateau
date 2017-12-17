@@ -1,4 +1,4 @@
- import java.util.Random;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Action {
@@ -26,7 +26,8 @@ public class Action {
         +"\t 1. Inspecter la pièce\n"
         +"\t 2. Changer de pièce\n"
         +"\t 3. Regarder ton inventaire\n"
-        +"\t 4. Ouvrir ta carte\n");
+        +"\t 4. Examiner les indices\n"
+        +"\t 5. Ouvrir ta carte\n");
         
         System.out.print("réponse : ");
         int choix = input.nextInt();
@@ -41,10 +42,13 @@ public class Action {
             }
         }else if(choix == 2){
             moi.changeDePiece(hante);  
-            moi.getIciPièce().foundEnnemie(moi);
+            moi.getIciPièce().foundEnnemie(moi,hante);
         }else if(choix == 3){
             moi.useItem();
-        }else{
+        }else if(choix == 4){
+            System.out.println(hante.indice.get(hante.endroit-8).getDisplayIndice());
+            }else
+       {
             System.out.println(hante.getMap(moi));
         }
        

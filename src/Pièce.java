@@ -67,7 +67,7 @@ public class Pièce {
     }
       
      
-  void foundEnnemie(Playeur p) {
+  void foundEnnemie(Playeur p,Chateau h) {
     if (rand.nextInt(20) > 10){
             Ennemie enemy = new Ennemie(this.getNom());
             System.out.println("un ennemie vient d'apparaitre !\n Ennemie : " + enemy.getNom()); 
@@ -95,6 +95,9 @@ public class Pièce {
                 }while(!enemy.mort() && !p.mort() && !fuite);
                 
                 if(enemy.mort()){
+                    if(h.indice.get(h.endroit - 8).getPossible()){
+                      System.out.println(h.indice.get(h.endroit - 8).getIndice());
+                    }
                 this.creatItem(enemy.getDifficulté()).foundItem(p);     
                 }
 
