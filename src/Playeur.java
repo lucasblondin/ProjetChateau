@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 public class Playeur extends Etre{
     ArrayList<Item> objet = new ArrayList<Item>();
+    boolean princesse = false;
     Pièce ici ;
     
     public Playeur(String nom,Pièce p){
@@ -24,6 +25,14 @@ public class Playeur extends Etre{
     
     void changeDePièce(Pièce p){
         ici = p;
+    }
+    
+    void addPrincesse(){
+        princesse = true;
+    }
+    
+    boolean getPrincesse(){
+        return princesse;
     }
     
     String getItem(){

@@ -14,7 +14,7 @@ public class Action {
        Scanner input = new Scanner(System.in);
        
        //System.out.println(hanter.getPiece());
-       while (!moi.mort()){
+       while (!moi.mort() && moi.getIciPièce().getNiveau() != 99){
         System.out.println("\033[H\033[2J");
         System.out.flush();
      //   System.out.println(hante.getOrdreDesPièces());
@@ -36,6 +36,7 @@ public class Action {
        // moi.foundItem(); 
             if(moi.getIciPièce().getPrincesse()){
                 System.out.println("tu as trouvé la princesse ! ");
+                moi.addPrincesse();
                 // duel contre boss & recup de la princesse
             }else{
             moi.getIciPièce().creatItem().foundItem(moi);
@@ -53,5 +54,15 @@ public class Action {
         }
        
        }
+       
+       if(moi.getPrincesse()){
+          System.out.println("Bravo tu as trouvé la princesse ! ");
+          
+       }else{
+           System.out.println("Tu t'es enfuie sans la princesse ! ");
+       }
+       System.out.println("Fini");
+       
+       
     }
 }

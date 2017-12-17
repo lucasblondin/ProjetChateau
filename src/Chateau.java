@@ -24,12 +24,16 @@ public class Chateau {
         indice.add(tourNId);
         indice.add(tourSId);
         
+        //sortie
+        Pièce sortie = new Pièce("sortie",99);
+        
         //rez de chaussé ( niveau 0 )
         Pièce pont = new Pièce("pont",0);
         Pièce entree = new Pièce("entree",0);
         Pièce bal = new Pièce("bal",0);
         Pièce jardin = new Pièce("jardin",0);
         Pièce cuisine = new Pièce("cuisine",0);
+        
         
         //première étage ( niveau 1 )
         Pièce rempart = new Pièce ("rempart",1);
@@ -46,6 +50,7 @@ public class Chateau {
         piece.add(pont);
         pont.porte.add(new Porte("salle d'entrée","entree"));
         pont.porte.add(new Porte("égout","égout"));
+        pont.porte.add(new Porte("sortie","sortie"));
         
         //1
         piece.add(entree);
@@ -109,10 +114,12 @@ public class Chateau {
         tourSud.porte.add(new Porte("porte vers les remparts","rempart"));
         tourSud.porte.add(new Porte("sauter par la fenêtre","égout"));
         
+        piece.add(sortie);
+        
        
         piece.get(endroit).addPrincesse();
         
-       System.out.println("la princesse ce trouve : " + piece.get(endroit).getNom());
+        //  System.out.println("la princesse ce trouve : " + piece.get(endroit).getNom());
     }
     
     
